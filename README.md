@@ -1,16 +1,61 @@
-# React + Vite
+# Muhammad Amin — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cyberpunk-themed personal portfolio built with React and Vite. Showcases my work as a Flutter & Frontend Developer at Significs Sdn Bhd.
 
-Currently, two official plugins are available:
+## Sections
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Hero** — Intro with animated typing effect and status badge
+- **About** — Background, timeline, and education
+- **Skills** — Tech stack with animated skill bars
+- **Projects** — Work at Significs + personal side projects
+- **Passions** — Interests beyond code
+- **Contact** — Links and contact form
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** — UI framework
+- **Vite 8** — Build tool and dev server
+- **Tailwind CSS v4** — Utility styles
+- **Framer Motion** — Animations
+- **Lucide React** — Icons
+- **Canvas API** — Particle background
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Navbar.jsx
+│   ├── Hero.jsx
+│   ├── About.jsx
+│   ├── Skills.jsx
+│   ├── Projects.jsx
+│   ├── Passions.jsx
+│   ├── Contact.jsx
+│   ├── Footer.jsx
+│   └── Particles.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+## Contact
+
+**Muhammad Amin Bin Abdul Hamid**
+- Email: m.amin.a.hamid@gmail.com
+- GitHub: [bachok11](https://github.com/bachok11)
+- LinkedIn: [linkedin.com/in/muhammadamin](https://linkedin.com/in/muhammadamin)
