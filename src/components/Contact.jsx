@@ -28,19 +28,53 @@ export default function Contact() {
   const inView = useInView(ref);
 
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle");
   const [focused, setFocused] = useState(null);
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+  const FALLBACK_EMAIL = "m.amin.a.hamid@gmail.com";
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate send
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setForm({ name: "", email: "", message: "" });
+
+    if (!WEB3FORMS_KEY) {
+      const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
+      const body = encodeURIComponent(
+        `${form.message}\n\n— ${form.name} (${form.email})`,
+      );
+      window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Portfolio contact from ${form.name}`,
+          from_name: form.name,
+          ...form,
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
+
+  const sent = status === "sent";
 
   const inputStyle = (field) => ({
     width: "100%",
@@ -157,8 +191,8 @@ export default function Contact() {
             {
               icon: Mail,
               label: "Email",
-              value: "m.amin.a.hamid@email.com",
-              href: "mailto:m.amin.a.hamid@email.com",
+              value: "m.amin.a.hamid@gmail.com",
+              href: "mailto:m.amin.a.hamid@gmail.com",
               color: "var(--neon-cyan)",
             },
             {
@@ -427,6 +461,7 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
+                  disabled={status === "sending"}
                   className="btn-cyber"
                   style={{
                     display: "flex",
@@ -434,15 +469,29 @@ export default function Contact() {
                     justifyContent: "center",
                     gap: 8,
                     border: "1px solid var(--neon-cyan)",
+                    opacity: status === "sending" ? 0.6 : 1,
+                    cursor: status === "sending" ? "wait" : "pointer",
                   }}
                 >
                   <span
                     style={{ display: "flex", alignItems: "center", gap: 8 }}
                   >
                     <Send size={14} />
-                    TRANSMIT
+                    {status === "sending" ? "TRANSMITTING..." : "TRANSMIT"}
                   </span>
                 </button>
+                {status === "error" && (
+                  <div
+                    style={{
+                      marginTop: 12,
+                      fontSize: "0.75rem",
+                      letterSpacing: 1,
+                      color: "var(--neon-pink)",
+                    }}
+                  >
+                    {">"} Transmission failed — try emailing me directly.
+                  </div>
+                )}
               </form>
             )}
           </div>

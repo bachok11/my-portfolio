@@ -155,6 +155,19 @@ export default function Projects() {
               "linear-gradient(90deg, var(--neon-pink), var(--neon-purple), transparent)",
           }}
         />
+        <p
+          style={{
+            color: "#7788aa",
+            fontSize: "0.82rem",
+            lineHeight: 1.6,
+            marginTop: 20,
+            maxWidth: 640,
+          }}
+        >
+          <span style={{ color: "var(--neon-cyan)" }}>{">"}</span> Most
+          production work is under NDA — source is private, but I'm happy to
+          walk through architecture, trade-offs, and decisions in person.
+        </p>
       </div>
 
       <div
@@ -333,6 +346,7 @@ export default function Projects() {
                   </a>
                 ) : (
                   <span
+                    title="Source private — production work under NDA. Happy to discuss architecture in person."
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -345,9 +359,10 @@ export default function Projects() {
                       letterSpacing: 1,
                       fontFamily: "Courier New",
                       textTransform: "uppercase",
+                      cursor: "help",
                     }}
                   >
-                    <GitFork size={13} /> Private
+                    <GitFork size={13} /> NDA
                   </span>
                 )}
                 {proj.demo && (

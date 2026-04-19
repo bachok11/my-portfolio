@@ -234,7 +234,9 @@ export default function Hero() {
           <span className="neon-cyan">Significs Sdn Bhd</span>. Computer Science
           graduate from{" "}
           <span className="neon-purple">Universiti Teknologi Malaysia</span>,
-          passionate about AI, clean code, and building the future.
+          passionate about <span className="neon-cyan">Flutter</span>,{" "}
+          <span className="neon-purple">React</span>, and writing code that
+          scales.
         </p>
 
         {/* CTA buttons */}
@@ -266,6 +268,15 @@ export default function Hero() {
           >
             <span>Contact Me</span>
           </button>
+          <a
+            className="btn-cyber btn-cyber-pink"
+            href="/Muhammad_Amin_Resume.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Download CV</span>
+          </a>
         </div>
 
         {/* Stats row */}
