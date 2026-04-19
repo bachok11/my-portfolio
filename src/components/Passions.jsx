@@ -1,20 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Camera, ChefHat, Gauge, Layers, Sparkles } from "lucide-react";
-
-function useInView(ref, threshold = 0.15) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setInView(true);
-      },
-      { threshold },
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [ref, threshold]);
-  return inView;
-}
+import { useInView } from "../hooks/useInView";
 
 const passions = [
   {
@@ -27,7 +13,7 @@ const passions = [
   {
     icon: Layers,
     title: "System Design & Architecture",
-    color: "var(--neon-green)",
+    color: "var(--neon-cyan)",
     desc: "Diving into system design and architecture patterns to build apps that scale gracefully — not just code that works, but code that lasts.",
     tags: ["Scalability", "Patterns", "Architecture"],
   },
@@ -87,7 +73,7 @@ export default function Passions() {
             style={{
               fontSize: "0.72rem",
               letterSpacing: 4,
-              color: "var(--neon-green)",
+              color: "var(--neon-cyan)",
               marginBottom: 8,
             }}
           >
@@ -103,7 +89,7 @@ export default function Passions() {
             }}
           >
             <span style={{ color: "#fff" }}>PASSIONS</span>{" "}
-            <span className="neon-green">&amp;</span>{" "}
+            <span className="neon-cyan">&amp;</span>{" "}
             <span className="gradient-cyber">FUTURE</span>
           </h2>
           <div
@@ -111,7 +97,7 @@ export default function Passions() {
               height: 2,
               width: 80,
               background:
-                "linear-gradient(90deg, var(--neon-green), var(--neon-cyan), transparent)",
+                "linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), transparent)",
             }}
           />
         </div>

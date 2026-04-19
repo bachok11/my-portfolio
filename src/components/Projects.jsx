@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Apple,
   Building2,
@@ -11,21 +11,7 @@ import {
   Play,
   ShieldAlert,
 } from "lucide-react";
-
-function useInView(ref, threshold = 0.1) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setInView(true);
-      },
-      { threshold },
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [ref, threshold]);
-  return inView;
-}
+import { useInView } from "../hooks/useInView";
 
 const projects = [
   {
@@ -62,7 +48,7 @@ const projects = [
     title: "e-Kuarters Johor",
     type: "Mobile App",
     icon: Home,
-    color: "var(--neon-green)",
+    color: "var(--neon-cyan)",
     tags: ["Flutter", "Clean Architecture", "BLoC", "Dio"],
     desc: "Official Johor State Government app for tenants of public quarters — lodge complaints, track resolution status, and view monthly rental payment info. Built on Clean Architecture (BLoC + GetIt + Dio) at Significs Technologies. Live on Google Play; iOS approval in progress.",
     status: "Production",
@@ -93,7 +79,7 @@ const projects = [
     title: "React Web Applications",
     type: "Web App",
     icon: Cpu,
-    color: "var(--neon-green)",
+    color: "var(--neon-cyan)",
     tags: ["React", "TypeScript", "Redux Toolkit", "Vite"],
     desc: "Scalable React + TypeScript web applications at Significs, applying Flutter/BLoC architectural patterns to the web stack. Centralized state with Redux Toolkit, async API integration, and component-driven development.",
     status: "Production",
@@ -132,7 +118,7 @@ const projects = [
 
 export default function Projects() {
   const ref = useRef(null);
-  const inView = useInView(ref);
+  const inView = useInView(ref, 0.1);
   const [hovered, setHovered] = useState(null);
 
   return (
@@ -265,6 +251,10 @@ export default function Projects() {
                   <img
                     src={proj.image}
                     alt={`${proj.title} screenshot`}
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="200"
                     style={{
                       width: "100%",
                       height: "100%",

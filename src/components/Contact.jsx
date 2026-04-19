@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Mail,
   GitFork,
@@ -7,21 +7,7 @@ import {
   Terminal,
   MessageSquare,
 } from "lucide-react";
-
-function useInView(ref, threshold = 0.15) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setInView(true);
-      },
-      { threshold },
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [ref, threshold]);
-  return inView;
-}
+import { useInView } from "../hooks/useInView";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -209,7 +195,7 @@ export default function Contact() {
               value: "linkedin.com/in/muhammadaminabdulhamid",
               href: "https://www.linkedin.com/in/muhammadaminabdulhamid/",
               external: true,
-              color: "var(--neon-green)",
+              color: "var(--neon-cyan)",
             },
           ].map(({ icon: Icon, label, value, href, external, color }, i) => (
             <a

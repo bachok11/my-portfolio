@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Zap } from "lucide-react";
+import { ChevronDown, Download, Zap } from "lucide-react";
 
 const TITLES = [
   "Flutter Developer",
@@ -269,13 +269,11 @@ export default function Hero() {
             <span>Contact Me</span>
           </button>
           <a
-            className="btn-cyber btn-cyber-pink"
+            className="btn-link"
             href="/Muhammad_Amin_Resume.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Muhammad_Amin_Resume.pdf"
           >
-            <span>Download CV</span>
+            <Download size={14} /> Download CV
           </a>
         </div>
 
@@ -324,6 +322,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <button
         onClick={scrollToAbout}
+        aria-label="Scroll to About section"
         style={{
           position: "absolute",
           bottom: 32,

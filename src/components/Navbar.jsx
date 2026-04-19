@@ -117,7 +117,7 @@ export default function Navbar() {
               }}
             >
               {active === l && (
-                <span style={{ color: "var(--neon-green)", marginRight: 4 }}>
+                <span style={{ color: "var(--neon-cyan)", marginRight: 4 }}>
                   &gt;
                 </span>
               )}
@@ -129,6 +129,8 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
           style={{
             background: "none",
             border: "none",
@@ -171,7 +173,7 @@ export default function Navbar() {
                 borderBottom: "1px solid rgba(255,255,255,0.05)",
               }}
             >
-              <span style={{ color: "var(--neon-green)", marginRight: 8 }}>
+              <span style={{ color: "var(--neon-cyan)", marginRight: 8 }}>
                 {">>"}
               </span>
               {l}

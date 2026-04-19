@@ -1,20 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Smartphone, Globe, Wrench } from "lucide-react";
-
-function useInView(ref, threshold = 0.2) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setInView(true);
-      },
-      { threshold },
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [ref, threshold]);
-  return inView;
-}
+import { useInView } from "../hooks/useInView";
 
 const skillGroups = [
   {
@@ -23,9 +9,8 @@ const skillGroups = [
     color: "var(--neon-cyan)",
     skills: [
       { name: "Flutter / Dart", level: 90 },
-      { name: "React Native", level: 65 },
-      { name: "Firebase", level: 80 },
-      { name: "REST APIs", level: 85 },
+      { name: "REST APIs (Dio)", level: 85 },
+      { name: "Firebase (FCM, Crashlytics)", level: 55 },
     ],
   },
   {
@@ -33,16 +18,15 @@ const skillGroups = [
     label: "Web",
     color: "var(--neon-purple)",
     skills: [
-      { name: "React.js", level: 75 },
-      { name: "JavaScript / TypeScript", level: 78 },
       { name: "HTML / CSS", level: 85 },
-      { name: "Node.js", level: 60 },
+      { name: "JavaScript / TypeScript", level: 78 },
+      { name: "React.js", level: 75 },
     ],
   },
   {
     icon: Wrench,
     label: "Tools & Practices",
-    color: "var(--neon-green)",
+    color: "var(--neon-cyan)",
     skills: [
       { name: "Git / GitHub", level: 88 },
       { name: "Agile / Scrum", level: 80 },
@@ -96,7 +80,7 @@ function SkillBar({ name, level, color, animate }) {
 
 export default function Skills() {
   const ref = useRef(null);
-  const inView = useInView(ref);
+  const inView = useInView(ref, 0.2);
   const [hoverIdx, setHoverIdx] = useState(null);
 
   const softSkills = [

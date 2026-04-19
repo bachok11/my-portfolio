@@ -15,7 +15,7 @@ export default function Particles() {
     resize();
     window.addEventListener("resize", resize);
 
-    const COLORS = ["#00f5ff", "#bf00ff", "#39ff14", "#ff006e"];
+    const COLORS = ["#00f5ff", "#00f5ff", "#00f5ff", "#f765ee"];
     const particles = Array.from({ length: 60 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,

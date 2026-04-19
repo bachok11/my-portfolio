@@ -1,20 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { User, MapPin, GraduationCap, Briefcase, Code2 } from "lucide-react";
-
-function useInView(ref, threshold = 0.2) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setInView(true);
-      },
-      { threshold },
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [ref, threshold]);
-  return inView;
-}
+import { useInView } from "../hooks/useInView";
 
 const timeline = [
   {
@@ -30,14 +16,14 @@ const timeline = [
     title: "Mobile App Developer",
     place: "Significs Sdn Bhd",
     period: "June 2022 – Present",
-    color: "var(--neon-green)",
+    color: "var(--neon-purple)",
     desc: "Building cutting-edge Flutter applications, leading mobile development initiatives, and collaborating on full-stack solutions.",
   },
 ];
 
 export default function About() {
   const ref = useRef(null);
-  const inView = useInView(ref);
+  const inView = useInView(ref, 0.2);
 
   return (
     <section
@@ -167,7 +153,7 @@ export default function About() {
           </p>
           <p style={{ color: "#8899bb", lineHeight: 1.8, fontSize: "0.9rem" }}>
             When I'm not writing code, I'm exploring how to improve my{" "}
-            <span className="neon-green">mobile apps</span> and diving deeper
+            <span className="neon-cyan">mobile apps</span> and diving deeper
             into <span className="neon-cyan">React</span> to level up my skills.
           </p>
 
