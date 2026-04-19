@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  ExternalLink,
-  GitFork,
-  Smartphone,
-  Globe,
+  Apple,
+  Building2,
   Cpu,
   Drone,
-  Building2,
+  Droplets,
+  ExternalLink,
+  GitFork,
+  Home,
+  Play,
+  ShieldAlert,
 } from "lucide-react";
 
 function useInView(ref, threshold = 0.1) {
@@ -26,19 +29,22 @@ function useInView(ref, threshold = 0.1) {
 
 const projects = [
   {
-    title: "Workplace Safety App",
+    title: "TLP APRS — Workplace Safety",
     type: "Mobile App",
-    icon: Smartphone,
+    icon: ShieldAlert,
     color: "var(--neon-cyan)",
     tags: ["Flutter", "BLoC", "Firebase", "Dio"],
-    desc: "Production Flutter app for workplace safety — covers incident reporting, real-time alerts, and field notifications. Integrated Firebase FCM for push notifications and Crashlytics for error monitoring. Shipped to Google Play Store and Apple App Store.",
+    desc: "Production Flutter app for workplace safety — covers incident reporting, real-time alerts, and field notifications. Integrated Firebase FCM for push notifications and Crashlytics for error monitoring. Shipped to Apple App Store.",
     status: "Production",
     statusColor: "var(--neon-green)",
+    image: "/tlp-aprs-ss.png",
     github: null,
     demo: null,
+    appStore: "https://apps.apple.com/my/app/tlp-aprs/id6753799270",
+    playStore: null,
   },
   {
-    title: "BLE Credentialing App",
+    title: "TLP Mocket — BLE Credentialing",
     type: "Mobile App",
     icon: Cpu,
     color: "var(--neon-purple)",
@@ -46,20 +52,42 @@ const projects = [
     desc: "Flutter app enabling BLE beacon broadcasting for secure mobile credentialing — location-aware access control triggers and secure local credential caching via Drift for seamless session persistence.",
     status: "Production",
     statusColor: "var(--neon-green)",
+    image: "/tlp-mocket-ss.png",
     github: null,
     demo: null,
+    appStore: "https://apps.apple.com/my/app/tlp-mocket/id6717579719",
+    playStore: null,
   },
   {
-    title: "Field Resource Monitoring",
+    title: "e-Kuarters Johor",
     type: "Mobile App",
-    icon: Globe,
-    color: "var(--neon-pink)",
-    tags: ["Flutter", "BLoC", "REST API", "GetIt"],
-    desc: "Production Flutter app for real-time field resource monitoring — track and manage field assets and personnel with clean architecture (BLoC + GetIt), RESTful API integration via Dio, and store-deployed builds.",
+    icon: Home,
+    color: "var(--neon-green)",
+    tags: ["Flutter", "Clean Architecture", "BLoC", "Dio"],
+    desc: "Official Johor State Government app for tenants of public quarters — lodge complaints, track resolution status, and view monthly rental payment info. Built on Clean Architecture (BLoC + GetIt + Dio) at Significs Technologies. Live on Google Play; iOS approval in progress.",
     status: "Production",
     statusColor: "var(--neon-green)",
+    image: "/e-kuarters-ss.jpeg",
     github: null,
     demo: null,
+    appStore: null,
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.ictjohor.eKuarters",
+  },
+  {
+    title: "Kelah Monitoring System (KMS)",
+    type: "Mobile App",
+    icon: Droplets,
+    color: "var(--neon-pink)",
+    tags: ["Flutter", "BLoC", "REST API", "GetIt"],
+    desc: "Aquaculture monitoring app for Kelah fish farms — tracks water quality and key environmental parameters with real-time data sync. Built with clean architecture (BLoC + GetIt) and RESTful API integration. Internal deployment, not yet on stores.",
+    status: "Production",
+    statusColor: "var(--neon-green)",
+    image: null,
+    github: null,
+    demo: null,
+    appStore: null,
+    playStore: null,
   },
   {
     title: "React Web Applications",
@@ -70,6 +98,7 @@ const projects = [
     desc: "Scalable React + TypeScript web applications at Significs, applying Flutter/BLoC architectural patterns to the web stack. Centralized state with Redux Toolkit, async API integration, and component-driven development.",
     status: "Production",
     statusColor: "var(--neon-green)",
+    image: null,
     github: null,
     demo: null,
   },
@@ -82,6 +111,7 @@ const projects = [
     desc: "Web platform for real-time drone operation — live camera feed via WebRTC, flight controls, telemetry status (battery, altitude, GPS), and mission monitoring. Built for browser-based remote piloting.",
     status: "In Progress",
     statusColor: "var(--neon-pink)",
+    image: null,
     github: null,
     demo: null,
   },
@@ -94,6 +124,7 @@ const projects = [
     desc: "Full-featured property management web app — tenants can manage listings, pay monthly rent, handle tax submissions, and track payment history. Landlords get a dashboard for occupancy and financials.",
     status: "In Progress",
     statusColor: "var(--neon-pink)",
+    image: null,
     github: null,
     demo: null,
   },
@@ -215,8 +246,43 @@ export default function Projects() {
                   width: 40,
                   height: 40,
                   background: `linear-gradient(225deg, ${proj.color}30, transparent)`,
+                  zIndex: 1,
                 }}
               />
+
+              {/* Screenshot banner */}
+              {proj.image && (
+                <div
+                  style={{
+                    margin: "-28px -28px 24px -28px",
+                    height: 200,
+                    overflow: "hidden",
+                    position: "relative",
+                    background: "rgba(0,0,0,0.4)",
+                    borderBottom: `1px solid ${proj.color}33`,
+                  }}
+                >
+                  <img
+                    src={proj.image}
+                    alt={`${proj.title} screenshot`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "top center",
+                      display: "block",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: `linear-gradient(180deg, transparent 60%, rgba(5,5,20,0.85))`,
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+              )}
 
               {/* Top row */}
               <div
@@ -318,7 +384,13 @@ export default function Projects() {
               </div>
 
               {/* Actions */}
-              <div style={{ display: "flex", gap: 12 }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 8,
+                  flexWrap: "wrap",
+                }}
+              >
                 {proj.github ? (
                   <a
                     href={proj.github}
@@ -389,6 +461,58 @@ export default function Projects() {
                     }}
                   >
                     <ExternalLink size={13} /> View
+                  </a>
+                )}
+                {proj.appStore && (
+                  <a
+                    href={proj.appStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      background: "none",
+                      border: `1px solid ${proj.color}44`,
+                      color: proj.color,
+                      padding: "6px 14px",
+                      borderRadius: 2,
+                      fontSize: "0.72rem",
+                      letterSpacing: 1,
+                      cursor: "pointer",
+                      fontFamily: "Courier New",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <Apple size={13} /> App Store
+                  </a>
+                )}
+                {proj.playStore && (
+                  <a
+                    href={proj.playStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      background: "none",
+                      border: `1px solid ${proj.color}44`,
+                      color: proj.color,
+                      padding: "6px 14px",
+                      borderRadius: 2,
+                      fontSize: "0.72rem",
+                      letterSpacing: 1,
+                      cursor: "pointer",
+                      fontFamily: "Courier New",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <Play size={13} /> Play Store
                   </a>
                 )}
               </div>
