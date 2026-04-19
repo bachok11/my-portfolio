@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 export default function Particles() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     let animId;
 
     const resize = () => {
@@ -13,9 +13,9 @@ export default function Particles() {
       canvas.height = window.innerHeight;
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
 
-    const COLORS = ['#00f5ff', '#bf00ff', '#39ff14', '#ff006e'];
+    const COLORS = ["#00f5ff", "#bf00ff", "#39ff14", "#ff006e"];
     const particles = Array.from({ length: 60 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -29,7 +29,7 @@ export default function Particles() {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         p.alpha += p.alphaDir;
@@ -55,7 +55,7 @@ export default function Particles() {
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
     };
   }, []);
 
@@ -63,10 +63,12 @@ export default function Particles() {
     <canvas
       ref={canvasRef}
       style={{
-        position: 'fixed',
-        top: 0, left: 0,
-        width: '100%', height: '100%',
-        pointerEvents: 'none',
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
         zIndex: 0,
       }}
     />
