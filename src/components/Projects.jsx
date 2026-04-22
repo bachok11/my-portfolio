@@ -53,7 +53,7 @@ const projects = [
     desc: "Official Johor State Government app for tenants of public quarters — lodge complaints, track resolution status, and view monthly rental payment info. Built on Clean Architecture (BLoC + GetIt + Dio) at Significs Technologies. Live on Google Play; iOS approval in progress.",
     status: "Production",
     statusColor: "var(--neon-green)",
-    image: "/e-kuarters-ss.jpeg",
+    image: "/e-kuarters-ss.png",
     github: null,
     demo: null,
     appStore: null,
