@@ -18,9 +18,9 @@ const skillGroups = [
     label: "Web",
     color: "var(--neon-purple)",
     skills: [
-      { name: "HTML / CSS", level: 85 },
-      { name: "JavaScript / TypeScript", level: 78 },
-      { name: "React.js", level: 75 },
+      { name: "React.js", level: 60, learning: true },
+      { name: "JavaScript / TypeScript", level: 55, learning: true },
+      { name: "HTML / CSS", level: 40, learning: true },
     ],
   },
   {
@@ -36,18 +36,35 @@ const skillGroups = [
   },
 ];
 
-function SkillBar({ name, level, color, animate }) {
+function SkillBar({ name, level, color, animate, learning }) {
   return (
     <div style={{ marginBottom: 16 }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           marginBottom: 6,
           fontSize: "0.8rem",
         }}
       >
-        <span style={{ color: "#aabbcc", letterSpacing: 0.5 }}>{name}</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ color: "#aabbcc", letterSpacing: 0.5 }}>{name}</span>
+          {learning && (
+            <span style={{
+              fontSize: "0.6rem",
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: "var(--neon-green)",
+              border: "1px solid rgba(57,255,20,0.35)",
+              background: "rgba(57,255,20,0.07)",
+              padding: "1px 6px",
+              borderRadius: 2,
+            }}>
+              Learning
+            </span>
+          )}
+        </div>
         <span style={{ color, fontWeight: 700 }}>{level}%</span>
       </div>
       <div
